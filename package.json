@@ -1,0 +1,27 @@
+{
+  "name": "nearbypoint",
+  "version": "1.0.0",
+  "description": "Get the nearby point to one location (lat, lon) in a route",
+  "main": "index.js",
+  "scripts": {
+    "test": "mocha"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/bpinedah/nearbypoint.git"
+  },
+  "keywords": [
+    "nearby",
+    "nearbypoint"
+  ],
+  "author": "Bruno Pineda <bpinedah@gmail.com> (https://github.com/bpinedah)",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/bpinedah/nearbypoint/issues"
+  },
+  "homepage": "https://github.com/bpinedah/nearbypoint#readme",
+  "devDependencies": {
+    "chai": "^3.5.0",
+    "mocha": "^3.2.0"
+  }
+}

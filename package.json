@@ -1,6 +1,6 @@
 {
   "name": "nearbypoint",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Get the nearby point to one location (lat, lon) in a route",
   "main": "index.js",
   "scripts": {

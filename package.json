@@ -25,6 +25,7 @@
     "mocha": "^3.2.0"
   },
   "dependencies": {
-    "async": "^2.1.4"
+    "async": "^2.1.4",
+    "underscore": "^1.8.3"
   }
 }

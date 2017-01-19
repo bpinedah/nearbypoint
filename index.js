@@ -1,4 +1,5 @@
 var fs    = require('fs'),
+    _     = require('underscore'),
     async = require('async');
 
 module.exports = {

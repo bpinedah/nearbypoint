@@ -1,11 +1,11 @@
 # nearbypoint
 Get the nearby point to one location (lat, lon) in a route
 
-## Install
+### Install
 ```
 npm install nearbypoint
 ```
-## Usage
+### Usage
 ```javascript
 var nearbypoint = require('nearbypoint');
 
@@ -14,7 +14,7 @@ nearbypoint.nearby(json, function (err, data) {
   // Do stuffs with data.
 });
 ```
-## Example
+### Example
 ```javascript
 var nearbypoint = require('nearbypoint');
 
@@ -35,7 +35,7 @@ nearbypoint.nearby(request, function (err, data) {
   // Do stuffs with data.
 });
 ```
-## Response OK
+### Response OK
 ```json
 {
   "success": true,
@@ -61,7 +61,7 @@ nearbypoint.nearby(request, function (err, data) {
   }
 }
 ```
-## Response error
+### Response error
 ```json
 {
   "error": "Debe de existir al menos un objeto para leer."

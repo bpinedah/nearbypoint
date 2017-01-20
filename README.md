@@ -38,8 +38,6 @@ nearbypoint.nearby(request, function (err, data) {
 ### Response OK
 ```json
 {
-  "success": true,
-  "message": {
     "nearby": {
       "pkubicacion": 67060862,
       "imei": "868585022636865",
@@ -58,7 +56,6 @@ nearbypoint.nearby(request, function (err, data) {
       "movement": "D"
     },
     "index": 5443
-  }
 }
 ```
 ### Response error

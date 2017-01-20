@@ -67,3 +67,7 @@ nearbypoint.nearby(request, function (err, data) {
   "error": "Debe de existir al menos un objeto para leer."
 }
 ```
+### Test
+```
+npm test
+```

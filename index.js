@@ -92,6 +92,8 @@ module.exports = {
             var index_r = routes.indexOf(d_min);
             cb(null, { nearby: d_min, index: index_r });
           });
+        } else {
+          cb({ error: "Debe de existir al menos un objeto para leer."});
         }
       } else {
         cb({ error: "Debe de existir al menos un objeto para leer."});

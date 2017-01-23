@@ -60,7 +60,6 @@ module.exports = {
           async.eachSeries(routes, function (point, callback) {
             getDistanceKmPromise(point, end, 2)
             .then(function (distance) {
-              console.log(distance);
               point.distance = distance;
               var index = routes.indexOf(point);
               var odd_index = (index > 0) ? index - 1 : 0;

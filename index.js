@@ -50,48 +50,49 @@ module.exports = {
           });
         });
       } else if (request.array != undefined) {
-        var data = request.array
-        obj = JSON.parse(data);
+        if (request.array.length > 0) {
+          var data = {rows: request.array};
+          obj = data;
+          let routes  = obj.rows;
+          let init    = request.init;
+          let end     = request.end;
 
-        let routes  = obj.rows;
-        let init    = request.init;
-        let end     = request.end;
+          async.eachSeries(routes, function (point, callback) {
+            getDistanceKmPromise(point, end, 2)
+            .then(function (distance) {
+              console.log(distance);
+              point.distance = distance;
+              var index = routes.indexOf(point);
+              var odd_index = (index > 0) ? index - 1 : 0;
+              var odd = (index > 0) ? routes[index - 1] : routes[0];
+              var cur = point;
 
-        async.eachSeries(routes, function (point, callback) {
-          getDistanceKmPromise(point, end, 2)
-          .then(function (distance) {
-            console.log(distance);
-            point.distance = distance;
-            var index = routes.indexOf(point);
-            var odd_index = (index > 0) ? index - 1 : 0;
-            var odd = (index > 0) ? routes[index - 1] : routes[0];
-            var cur = point;
-
-            if (odd_index != index) {
-              if (odd.distance < cur.distance) {
-                point.movement = "I";
-              } else if (odd.distance > cur.distance) {
-                point.movement = "D";
+              if (odd_index != index) {
+                if (odd.distance < cur.distance) {
+                  point.movement = "I";
+                } else if (odd.distance > cur.distance) {
+                  point.movement = "D";
+                }
               }
-            }
-            callback();
-          })
-          .catch(function (error) {
-            callback()
-          })
-        }, function (error) {
-          if (error) return res.status(500).jsonp({ success: false, message: error });
-          var increment = _.filter(routes, function (route) {
-            return route.movement == "I";
+              callback();
+            })
+            .catch(function (error) {
+              callback()
+            })
+          }, function (error) {
+            if (error) return res.status(500).jsonp({ success: false, message: error });
+            var increment = _.filter(routes, function (route) {
+              return route.movement == "I";
+            });
+            var decrement = _.filter(routes, function (route) {
+              return route.movement == "D";
+            });
+            var i_max = _.max(increment, function (number) { return number.distance });
+            var d_min = _.min(decrement, function (number) { return number.distance });
+            var index_r = routes.indexOf(d_min);
+            cb(null, { nearby: d_min, index: index_r });
           });
-          var decrement = _.filter(routes, function (route) {
-            return route.movement == "D";
-          });
-          var i_max = _.max(increment, function (number) { return number.distance });
-          var d_min = _.min(decrement, function (number) { return number.distance });
-          var index_r = routes.indexOf(d_min);
-          cb(null, { nearby: d_min, index: index_r });
-        });
+        }
       } else {
         cb({ error: "Debe de existir al menos un objeto para leer."});
       }

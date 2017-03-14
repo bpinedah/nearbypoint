@@ -10,9 +10,9 @@ module.exports = {
         fs.readFile(request.url, 'utf8', function (err, data) {
           if (err) return cb(err);
           obj = JSON.parse(data);
-          let routes  = obj.rows;
-          let init    = request.init;
-          let end     = request.end;
+          var routes  = obj.rows;
+          var init    = request.init;
+          var end     = request.end;
 
           async.eachSeries(routes, function (point, callback) {
             getDistanceKmPromise(point, end, 2)
@@ -53,9 +53,9 @@ module.exports = {
         if (request.array.length > 0) {
           var data = {rows: request.array};
           obj = data;
-          let routes  = obj.rows;
-          let init    = request.init;
-          let end     = request.end;
+          var routes  = obj.rows;
+          var init    = request.init;
+          var end     = request.end;
 
           async.eachSeries(routes, function (point, callback) {
             getDistanceKmPromise(point, end, 2)
@@ -106,21 +106,21 @@ module.exports = {
 function getDistanceKm (start, end, decimals) {
   try {
     decimals = decimals || 2;
-    let earthRadius = 6371; // km
-    let lat1 = parseFloat(start.latitud);
-    let lat2 = parseFloat(end.latitud);
-    let lon1 = parseFloat(start.longitud);
-    let lon2 = parseFloat(end.longitud);
+    var earthRadius = 6371; // km
+    var lat1 = parseFloat(start.latitud);
+    var lat2 = parseFloat(end.latitud);
+    var lon1 = parseFloat(start.longitud);
+    var lon2 = parseFloat(end.longitud);
 
-    let dLat = (lat2 - lat1).toRad();
-    let dLon = (lon2 - lon1).toRad();
+    var dLat = (lat2 - lat1).toRad();
+    var dLon = (lon2 - lon1).toRad();
     lat1 = lat1.toRad();
     lat2 = lat2.toRad();
 
-    let a = Math.sin(dLat / 2) * Math.sin(dLat / 2) +
+    var a = Math.sin(dLat / 2) * Math.sin(dLat / 2) +
             Math.sin(dLon / 2) * Math.sin(dLon / 2) * Math.cos(lat1) * Math.cos(lat2);
-    let c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
-    let d = earthRadius * c;
+    var c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
+    var d = earthRadius * c;
     return Math.round(d * Math.pow(10, decimals)) / Math.pow(10, decimals);
   } catch (e) {
     return e;
@@ -135,19 +135,19 @@ function getDistanceKmPromise (start, end, decimals) {
         }
       }
       decimals = decimals || 2;
-      let earthRadius = 6371; // km
-      let lat1 = parseFloat(start.latitud);
-      let lat2 = parseFloat(end.latitud);
-      let lon1 = parseFloat(start.longitud);
-      let lon2 = parseFloat(end.longitud);
-      let dLat = (lat2 - lat1).toRad();
-      let dLon = (lon2 - lon1).toRad();
+      var earthRadius = 6371; // km
+      var lat1 = parseFloat(start.latitud);
+      var lat2 = parseFloat(end.latitud);
+      var lon1 = parseFloat(start.longitud);
+      var lon2 = parseFloat(end.longitud);
+      var dLat = (lat2 - lat1).toRad();
+      var dLon = (lon2 - lon1).toRad();
       lat1 = lat1.toRad();
       lat2 = lat2.toRad();
-      let a = Math.sin(dLat / 2) * Math.sin(dLat / 2) +
+      var a = Math.sin(dLat / 2) * Math.sin(dLat / 2) +
               Math.sin(dLon / 2) * Math.sin(dLon / 2) * Math.cos(lat1) * Math.cos(lat2);
-      let c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
-      let d = earthRadius * c;
+      var c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
+      var d = earthRadius * c;
       resolve(Math.round(d * Math.pow(10, decimals)) / Math.pow(10, decimals));
     } catch (e) {
       reject(e);
